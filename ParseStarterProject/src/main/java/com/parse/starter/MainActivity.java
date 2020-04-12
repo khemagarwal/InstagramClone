@@ -8,6 +8,7 @@
  */
 package com.parse.starter;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -41,6 +42,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   EditText username;
   EditText password;
 
+
+  public void showUserList()
+  {
+    Intent intent=new Intent(getApplicationContext(),UserList.class);
+    startActivity(intent);
+
+  }
+
   public void signUpClicked(View view)
   {
 
@@ -64,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           if(e ==null)
           {
             Log.i("Signup","Success");
+            showUserList();
           }
           else
           {
@@ -82,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(user !=null)
             {
               Log.i("login","Successfull");
+              showUserList();
             }
             else
             {
@@ -108,6 +119,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     backgroundLayout.setOnClickListener(this);
 
     password.setOnKeyListener(this);
+
+    setTitle("Instagram");
+
+
+    if(ParseUser.getCurrentUser() != null)
+    {
+      showUserList();
+    }
 
 
     
